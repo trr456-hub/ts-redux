@@ -1,14 +1,37 @@
-import { useState } from "react";
-import { legacy_createStore } from "redux";
+import { createStore } from "redux";
 
 const App = () => {
-  const reducer = (state = 0) => {
-    return state;
+  const ADD = "ADD";
+  const MINUS = "MINUS";
+  const counterModifier = (state = 0, action: { type: string }) => {
+    switch (action.type) {
+      case ADD:
+        return state + 1;
+      case MINUS:
+        return state - 1;
+      default:
+        return state;
+    }
   };
 
-  const store = legacy_createStore(reducer);
+  const store = createStore(counterModifier);
 
-  console.log(store.getState());
+  const change = () => {
+    const ccou = document.getElementById("count") as HTMLElement;
+    ccou.innerText = String(store.getState());
+  };
+
+  store.subscribe(change);
+
+  const handleAdd = () => {
+    store.dispatch({ type: ADD });
+  };
+  const handleMinus = () => {
+    store.dispatch({ type: MINUS });
+  };
+
+  // add.addEventListener("click", () => handleAdd);
+  // minus.addEventListener("click", () => handleMinus);
 
   // const [count, setCount] = useState<number>(0);
   // const add = () => {
@@ -20,13 +43,13 @@ const App = () => {
 
   return (
     <div>
-      {/* <button id="minus" onClick={minus}>
+      <button id="minus" onClick={handleMinus}>
         마이너스
       </button>
-      <span>{count}</span>
-      <button id="plus" onClick={add}>
+      <span id="count"></span>
+      <button id="plus" onClick={handleAdd}>
         플러스
-      </button> */}
+      </button>
     </div>
   );
 };

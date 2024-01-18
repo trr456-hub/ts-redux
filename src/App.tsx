@@ -1,34 +1,38 @@
 import { createStore } from "redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+import React from "react";
 
 const App = () => {
-  const ADD = "ADD";
-  const MINUS = "MINUS";
-  const counterModifier = (state = 0, action: { type: string }) => {
-    switch (action.type) {
-      case ADD:
-        return state + 1;
-      case MINUS:
-        return state - 1;
-      default:
-        return state;
-    }
-  };
+  // const ADD = "ADD";
+  // const MINUS = "MINUS";
+  // const counterModifier = (state = 0, action: { type: string }) => {
+  //   switch (action.type) {
+  //     case ADD:
+  //       return state + 1;
+  //     case MINUS:
+  //       return state - 1;
+  //     default:
+  //       return state;
+  //   }
+  // };
 
-  const store = createStore(counterModifier);
+  // const store = createStore(counterModifier);
 
-  const change = () => {
-    const ccou = document.getElementById("count") as HTMLElement;
-    ccou.innerText = String(store.getState());
-  };
+  // const change = () => {
+  //   const ccou = document.getElementById("count") as HTMLElement;
+  //   ccou.innerText = String(store.getState());
+  // };
 
-  store.subscribe(change);
+  // store.subscribe(change);
 
-  const handleAdd = () => {
-    store.dispatch({ type: ADD });
-  };
-  const handleMinus = () => {
-    store.dispatch({ type: MINUS });
-  };
+  // const handleAdd = () => {
+  //   store.dispatch({ type: ADD });
+  // };
+  // const handleMinus = () => {
+  //   store.dispatch({ type: MINUS });
+  // };
 
   // add.addEventListener("click", () => handleAdd);
   // minus.addEventListener("click", () => handleMinus);
@@ -42,15 +46,12 @@ const App = () => {
   // };
 
   return (
-    <div>
-      <button id="minus" onClick={handleMinus}>
-        마이너스
-      </button>
-      <span id="count"></span>
-      <button id="plus" onClick={handleAdd}>
-        플러스
-      </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Detail />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

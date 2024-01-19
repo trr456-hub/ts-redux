@@ -1,8 +1,6 @@
-import { createStore } from "redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./routes/Home";
-import Detail from "./routes/Detail";
-import React from "react";
+import Home from "../routes/Home";
+import Detail from "../routes/Detail";
 
 const App = () => {
   // const ADD = "ADD";

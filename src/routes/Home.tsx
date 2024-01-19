@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import ToDo from "../components/ToDos";
 import { actionCreators } from "../store/store";
 
 interface HomeProps {
-  toDos: any[]; // toDos의 타입은 알맞게 지정해 주세요.
+  toDos: any[];
   addToDo: (text: string) => void;
 }
 
@@ -24,7 +25,11 @@ function Home({ toDos, addToDo }: HomeProps) {
         <input type="text" value={text} onChange={onChange} />
         <button>Add</button>
       </form>
-      <ul>{JSON.stringify(toDos)}</ul>
+      <ul>
+        {toDos.map((toDo) => (
+          <ToDo key={toDo.id} {...toDo} />
+        ))}
+      </ul>
     </>
   );
 }

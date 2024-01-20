@@ -19,7 +19,6 @@ const ToDo = ({ text, DeleteBtnClk, id }: props) => {
 };
 
 function mapDispatchToProps(dispatch: any, ownProps: any) {
-  //   console.log(actionCreators.deleteToDo(ownProps.id));
   return {
     DeleteBtnClk: () => dispatch(actionCreators.deleteToDo(ownProps.id)),
   };

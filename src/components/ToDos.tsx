@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { actionCreators } from "../store/store";
+import { remove } from "../store/store";
 
 interface props {
   text: string;
@@ -20,7 +20,7 @@ const ToDo = ({ text, DeleteBtnClk, id }: props) => {
 
 function mapDispatchToProps(dispatch: any, ownProps: any) {
   return {
-    DeleteBtnClk: () => dispatch(actionCreators.deleteToDo(ownProps.id)),
+    DeleteBtnClk: () => dispatch(remove(ownProps.id)),
   };
 }
 
